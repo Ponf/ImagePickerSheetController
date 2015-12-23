@@ -12,13 +12,13 @@ import Photos
 private let previewCollectionViewInset: CGFloat = 5
 
 /// The media type an instance of ImagePickerSheetController can display
-public enum ImagePickerMediaType {
+@objc public enum ImagePickerMediaType : Int {
     case Image
     case Video
     case ImageAndVideo
 }
 
-@available(iOS 8.0, *)
+@objc @available(iOS 8.0, *)
 public class ImagePickerSheetController: UIViewController {
     
     private lazy var sheetController: SheetController = {
@@ -68,7 +68,7 @@ public class ImagePickerSheetController: UIViewController {
     }
     
     /// Maximum selection of images.
-    public var maximumSelection: Int?
+    public var maximumSelection: NSNumber?
     
     private var selectedImageIndices = [Int]() {
         didSet {
@@ -401,7 +401,7 @@ extension ImagePickerSheetController: UICollectionViewDelegate {
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let maximumSelection = maximumSelection {
-            if selectedImageIndices.count >= maximumSelection,
+            if selectedImageIndices.count >= maximumSelection.integerValue,
                 let previousItemIndex = selectedImageIndices.first {
                     supplementaryViews[previousItemIndex]?.selected = false
                     selectedImageIndices.removeAtIndex(0)

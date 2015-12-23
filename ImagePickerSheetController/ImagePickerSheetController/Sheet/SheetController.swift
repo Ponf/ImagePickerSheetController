@@ -217,7 +217,7 @@ extension SheetController: UICollectionViewDataSource {
             let action = actions[indexPath.item]
             let actionCell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(SheetActionCollectionViewCell.self), forIndexPath: indexPath) as! SheetActionCollectionViewCell
             actionCell.textLabel.font = fontForAction(action)
-            actionCell.textLabel.text = numberOfSelectedImages > 0 ? action.secondaryTitle(numberOfSelectedImages) : action.title
+            actionCell.textLabel.text = numberOfSelectedImages > 0 ? action.secondaryTitle : action.title
             
             cell = actionCell
         }
